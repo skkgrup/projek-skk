@@ -22,7 +22,7 @@
         }
         /* Atur body dengan background image dan posisi */
         body {
-            background-image: url('https://res.cloudinary.com/di1pwoapk/image/upload/v1741429851/drt_bzloct.jpg');
+            background-image: url('https://res.cloudinary.com/di1pwoapk/image/upload/v1743837539/66_pvgsx8.jpg');
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -31,12 +31,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start; /* Align items to start */
-            overflow: hidden; /* Prevent overflow from fireworks */
         }
         /* Ticker untuk kurs */
         .ticker {
-            background: black;
-            color: yellow;
+            background: red; /* Warna merah untuk ticker */
+            color: yellow; /* Teks warna kuning */
             padding: 10px;
             width: 100%;
             text-align: center;
@@ -49,7 +48,7 @@
         .ticker div {
             display: inline-block;
             padding-left: 100%;
-            animation: ticker-scroll 10s linear infinite;
+            animation: ticker-scroll 20s linear infinite; /* Diperlambat dari 10s menjadi 20s */
         }
         @keyframes ticker-scroll {
             from { transform: translateX(0); }
@@ -95,11 +94,25 @@
             color: white;
             font-family: Arial, sans-serif;
             margin-top: 200px; /* Increase margin to ensure content is below the menu */
+            flex: 1; /* Allow content to take up available space */
         }
         /* Styling for heading and paragraph */
         h1 {
-            color: #ffcc00; /* Warna cerah untuk judul */
-            margin-bottom: 20px; /* Add margin below title */
+            color: white; /* Warna teks putih */
+            background-color: black; /* Background hitam */
+            padding: 20px; /* Ruang antara teks dan batas */
+            border-radius: 10px; /* Sudut melengkung */
+            margin-bottom: 20px; /* Jarak antara h1 dan elemen di bawahnya */
+        }
+        /* Kata jualan */
+        .jualan-info {
+            margin-top: 30px; /* Add margin for spacing */
+            color: red; /* Ubah warna teks menjadi merah */
+            background-color: black; /* Background hitam */
+            padding: 15px; /* Ruang antara teks dan batas */
+            border-radius: 10px; /* Sudut melengkung */
+            font-size: 18px; /* Ukuran font untuk paragraf */
+            text-align: center; /* Center the text */
         }
         /* Button styles */
         .daftar-buttons {
@@ -123,23 +136,28 @@
         .daftar-buttons button:hover {
             background-color: darkgreen;
         }
-        /* Kata jualan */
-        .jualan-info {
-            margin-top: 30px; /* Add margin for spacing */
-            color: #00ffcc; /* Warna cerah untuk informasi jualan */
-            font-size: 18px; /* Ukuran font untuk paragraf */
-            text-align: center; /* Center the text */
+        /* Paragraf tambahan */
+        .extra-info {
+            margin-top: 20px; /* Jarak atas */
+            background-color: black; /* Background hitam */
+            color: green; /* Warna teks hijau */
+            padding: 10px; /* Ruang dalam */
+            border-radius: 5px; /* Sudut melengkung */
+            text-align: center; /* Teks di tengah */
+            width: 80%; /* Lebar kontainer */
+            max-width: 800px; /* Lebar maksimum */
         }
-        /* Tabel Produk */
-        table {
-            margin-top: 20px;
-            width: 50%; /* Tabel 50% lebar */
-            color: white;
-            text-align: center; /* Center text in table */
+        /* Gambar banner */
+        .banner {
+            display: flex;
+            justify-content: space-around;
+            width: 80%; /* Lebar kontainer gambar */
+            margin-top: 20px; /* Jarak atas */
         }
-        table th, table td {
-            padding: 10px;
-            border: 1px solid #ddd;
+        .banner img {
+            width: 48%; /* Lebar gambar */
+            border-radius: 10px; /* Sudut melengkung */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan gambar */
         }
         /* Footer styles */
         footer {
@@ -190,7 +208,6 @@
                 firework.remove();
             }, 700); // Duration of the firework
         }
-
         // Generate fireworks at random positions
         setInterval(() => {
             const x = Math.random() * window.innerWidth;
@@ -199,25 +216,28 @@
             const color = colors[Math.floor(Math.random() * colors.length)];
             createFirework(x, y, color);
         }, 300); // More frequent fireworks
-
         // Function to update ticker with cryptocurrency prices
         async function updateTicker() {
             try {
                 const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Cdogecoin%2Cethereum%2Ctether&vs_currencies=idr');
                 const data = await response.json();
-                const bitcoinPrice = data.bitcoin.idr;
-                const dogecoinPrice = data.dogecoin.idr;
-                const ethereumPrice = data.ethereum.idr;
-                const usdtPrice = data.tether.idr;
+                const bitcoinPrice = data.bitcoin.idr.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+                const dogecoinPrice = data.dogecoin.idr.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+                const ethereumPrice = data.ethereum.idr.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+                const usdtPrice = data.tether.idr.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
 
                 document.getElementById('kurs-ticker').textContent = 
-                    `Kurs Bitcoin to IDR: Rp ${bitcoinPrice} | Kurs Dogecoin to IDR: Rp ${dogecoinPrice} | Kurs Ethereum to IDR: Rp ${ethereumPrice} | Kurs USDT to IDR: Rp ${usdtPrice}`;
+                    `Bitcoin: ${bitcoinPrice} | Dogecoin: ${dogecoinPrice} | Ethereum: ${ethereumPrice} | USDT: ${usdtPrice}`;
             } catch (error) {
                 document.getElementById('kurs-ticker').textContent = 'Gagal memuat harga cryptocurrency.';
+                console.error(error); // Debugging error
             }
         }
 
+        // Panggil fungsi updateTicker() pertama kali
         updateTicker();
+
+        // Update harga setiap 60 detik
         setInterval(updateTicker, 60000);
     </script>
 </head>
@@ -240,49 +260,18 @@
     </div>
     <div class="content">
         <h1>Selamat Datang di Situs Kami</h1>
-        <div class="daftar-buttons">
-            <button onclick="location.href='link_daftar1.html'">Daftar 1</button>
-            <button onclick="location.href='link_daftar2.html'">Daftar 2</button>
-            <button onclick="location.href='link_daftar3.html'">Daftar 3</button>
-            <button onclick="location.href='link_daftar4.html'">Daftar 4</button>
-            <button onclick="location.href='link_daftar5.html'">Daftar 5</button>
-            <button onclick="location.href='link_daftar6.html'">Daftar 6</button>
+        <p class="jualan-info">Kami juga menjual berbagai macam laptop Dan PC.</p>
+        <div class="daftar-buttons" style="margin-top: 20px;">
+            <button onclick="location.href='link_daftar1.html'">List Harga</button>
+            <button onclick="location.href='link_daftar2.html'">Photo Laptop</button>
+            <button onclick="location.href='link_daftar3.html'">Photo PC</button>
         </div>
-        <p class="jualan-info" style="margin-top: 40px;">Kami juga menjual berbagai macam laptop PC dan lain-lain dengan harga terjangkau dan kualitas terbaik. Kami berkomitmen untuk memberikan produk yang memuaskan kepada setiap pelanggan dan menjamin kepuasan Anda.</p>
-        
-        <table>
-            <tr>
-                <th>Nama Produk</th>
-                <th>Harga</th>
-                <th>Spesifikasi</th>
-            </tr>
-            <tr>
-                <td>Produk 1</td>
-                <td>Rp 100.000</td>
-                <td>Spesifikasi A</td>
-            </tr>
-            <tr>
-                <td>Produk 2</td>
-                <td>Rp 200.000</td>
-                <td>Spesifikasi B</td>
-            </tr>
-            <tr>
-                <td>Produk 3</td>
-                <td>Rp 300.000</td>
-                <td>Spesifikasi C</td>
-            </tr>
-        </table>
-
-        <!-- Gambar-gambar di bawah tabel -->
-        <div style="margin-top: 20px;">
-            <img src="https://via.placeholder.com/150" alt="Gambar 1" style="width: 40%; margin: 5px;">
-            <img src="https://via.placeholder.com/150" alt="Gambar 2" style="width: 40%; margin: 5px;">
-            <img src="https://via.placeholder.com/150" alt="Gambar 3" style="width: 40%; margin: 5px;">
-            <img src="https://via.placeholder.com/150" alt="Gambar 4" style="width: 40%; margin: 5px;">
-            <img src="https://via.placeholder.com/150" alt="Gambar 5" style="width: 40%; margin: 5px;">
-            <img src="https://via.placeholder.com/150" alt="Gambar 6" style="width: 40%; margin: 5px;">
-            <img src="https://via.placeholder.com/150" alt="Gambar 7" style="width: 40%; margin: 5px;">
-            <img src="https://via.placeholder.com/150" alt="Gambar 8" style="width: 40%; margin: 5px;">
+        <!-- Paragraf tambahan dengan warna hijau dan background hitam -->
+        <p class="extra-info">Kami menyediakan produk dengan kualitas terbaik dan harga yang bersaing. Jangan ragu untuk menghubungi kami jika Anda memiliki pertanyaan.</p>
+        <!-- Gambar banner -->
+        <div class="banner">
+            <img src="https://res.cloudinary.com/di1pwoapk/image/upload/v1743803455/cer_bufett.jpg" alt="Banner 1">
+            <img src="https://res.cloudinary.com/di1pwoapk/image/upload/v1743803455/cer_bufett.jpg" alt="Banner 2">
         </div>
     </div>
     <footer>
