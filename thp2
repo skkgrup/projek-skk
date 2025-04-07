@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Halaman dengan menu navigasi elegan, logo di sisi kanan, teks di tengah kolom, dan footer. Investasi tidak hanya terbatas pada saham atau cryptocurrency, tetapi juga pada pengetahuan dan keterampilan yang dapat memandu kita dalam mengambil keputusan yang cerdas.">
+  <meta name="keywords" content="menu navigasi, logo, HTML, CSS, footer, daftar, kemampuan, skil, mencari uang">
+  <meta name="author" content="Nama Anda">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Mari Kita Investasi Di Ilmu Agar Hidup Tidak Sengsara/Susah">
+  <meta property="og:description" content="Investasi tidak hanya terbatas pada saham atau cryptocurrency, tetapi juga pada pengetahuan dan keterampilan yang dapat memandu kita dalam mengambil keputusan yang cerdas.">
+  <meta property="og:image" content="https://res.cloudinary.com/di1pwoapk/image/upload/v1741152887/skk_lq8ul0.png">
+  <meta property="og:url" content="https://www.contohwebsite.com">
+  <title>Mari Kita Investasi Di Ilmu Agar Hidup Tidak Sengsara/Susah</title>
+  <link rel="icon" href="https://res.cloudinary.com/di1pwoapk/image/upload/v1741152887/skk_lq8ul0.png" type="image/png">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #000;
+      color: #fff;
+      overflow: hidden; /* Mencegah scrollbar */
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .slideshow {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      animation: fade 16s infinite;
+    }
+
+    .slideshow img:nth-child(1) { animation-delay: 0s; }
+    .slideshow img:nth-child(2) { animation-delay: 8s; }
+
+    @keyframes fade {
+      0%, 100% { opacity: 0; }
+      20%, 50% { opacity: 1; }
+    }
+
+    /* Styling untuk harga cryptocurrency */
+    #crypto-prices {
+      background-color: red; /* Latar belakang warna merah */
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      font-size: 16px;
+      position: fixed; /* Mengubah ke posisi fixed */
+      top: 80px; /* Jarak dari atas, di bawah navbar */
+      width: 100%; /* Lebar penuh */
+      z-index: 10; /* Menempatkan di atas elemen lain */
+      white-space: nowrap; /* Mencegah wrapping */
+      overflow: hidden; /* Mencegah konten meluap */
+    }
+
+    .price-container {
+      display: inline-block; /* Memastikan harga bergerak dalam satu baris */
+      animation: scroll 10s linear infinite; /* Menambahkan efek scroll */
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(100%); /* Mulai dari luar layar di kanan */
+      }
+      100% {
+        transform: translateX(-100%); /* Bergerak ke luar layar di kiri */
+      }
+    }
+
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+      font-size: 14px;
+    }
+
+    .navbar ul li a:hover {
+      background-color: #575757;
+    }
+
+    .logo {
+      width: 60px;
+    }
+
+    .content {
+      margin-top: 140px; /* Mengatur margin atas untuk menghindari tumpang tindih dengan harga */
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      background-color: #111;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .jualan-info {
+      color: red;
+      background-color: #000;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .daftar-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .daftar-buttons button {
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .daftar-buttons button:hover {
+      background-color: darkgreen;
+    }
+
+    .extra-info {
+      margin-top: 20px;
+      background-color: black;
+      color: #00ff00;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .banner {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .banner img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.8);
+      text-align: center;
+      padding: 12px;
+      margin-top: 40px;
+    }
+
+    .chat-buttons {
+      position: fixed;
+      right: 15px;
+      bottom: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .chat-buttons a {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 50%;
+    }
+
+    .chat-buttons img {
+      width: 24px;
+      height: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .navbar ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      .chat-buttons {
+        right: 10px;
+        bottom: 10px;
+      }
+
+      .chat-buttons a {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    /* Cursor trail effect */
+    .cursor-trail {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: #00ffcc;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.7;
+      transform: translate(-50%, -50%);
+      animation: fadeOut 1s forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slideshow">
+    <img src="https://res.cloudinary.com/di1pwoapk/image/upload/v1744014499/80e4b535529271eba91eb51e02cbc6988f5790b9_xcwht8.jpg" alt="Background 1">
+    <img src="https://res.cloudinary.com/di1pwoapk/image/upload/v1744013932/tig7uzchfqkbf7fsxdn1.jpg" alt="Background 2">
+  </div>
+
+  <!-- Harga Real-Time Cryptocurrency -->
+  <div id="crypto-prices">
+    <div class="price-container">
+      <span id="btc-price">BTC: Memuat...</span>
+      <span id="doge-price">DOGE: Memuat...</span>
+      <span id="eth-price">ETH: Memuat...</span>
+      <span id="usd-price">USD: Memuat...</span>
+    </div>
+  </div>
+
+  <div class="navbar">
+    <img src="https://res.cloudinary.com/di1pwoapk/image/upload/v1741152887/skk_lq8ul0.png" alt="Logo" class="logo">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <h1>Selamat Datang di Situs Kami</h1>
+    <p class="jualan-info">Kami juga menjual berbagai macam laptop dan PC.</p>
+    <div class="daftar-buttons">
+      <button onclick="location.href='link_daftar1.html'">List Harga</button>
+      <button onclick="location.href='link_daftar2.html'">Photo Laptop</button>
+      <button onclick="location.href='link_daftar3.html'">Photo PC</button>
+    </div>
+    <p class="extra-info">Kami menyediakan produk dengan kualitas terbaik dan harga yang bersaing. Jangan ragu untuk menghubungi kami jika Anda memiliki pertanyaan.</p>
+    <div class="banner">
+      <img src="https://res.cloudinary.com/di1pwoapk/image/upload/v1743803455/cer_bufett.jpg" alt="Banner 1">
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Nama Website. All rights reserved.
+  </footer>
+
+  <div class="chat-buttons">
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="WhatsApp"></a>
+    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Email"></a>
+  </div>
+
+  <!-- Cursor Trail Script -->
+  <script>
+    document.addEventListener('mousemove', function(e) {
+      const trail = document.createElement('div');
+      trail.classList.add('cursor-trail');
+      document.body.appendChild(trail);
+      trail.style.left = `${e.pageX}px`;
+      trail.style.top = `${e.pageY}px`;
+
+      setTimeout(() => {
+        trail.remove();
+      }, 1000);
+    });
+  </script>
+
+  <!-- Fetch Cryptocurrency Prices -->
+  <script>
+    async function fetchPrices() {
+      try {
+        // Fetch harga BTC, DOGE, ETH dari CoinGecko
+        const cryptoResponse = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,dogecoin,ethereum&vs_currencies=idr');
+        const cryptoData = await cryptoResponse.json();
+
+        // Fetch harga USD ke IDR
+        const forexResponse = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+        const forexData = await forexResponse.json();
+
+        // Update elemen HTML dengan harga terbaru
+        document.getElementById('btc-price').textContent = `BTC: Rp ${cryptoData.bitcoin.idr.toLocaleString()}`;
+        document.getElementById('doge-price').textContent = `DOGE: Rp ${cryptoData.dogecoin.idr.toLocaleString()}`;
+        document.getElementById('eth-price').textContent = `ETH: Rp ${cryptoData.ethereum.idr.toLocaleString()}`;
+        document.getElementById('usd-price').textContent = `USD: Rp ${forexData.rates.IDR.toLocaleString()}`;
+      } catch (error) {
+        console.error('Gagal mengambil data harga:', error);
+        document.getElementById('btc-price').textContent = 'Gagal memuat BTC';
+        document.getElementById('doge-price').textContent = 'Gagal memuat DOGE';
+        document.getElementById('eth-price').textContent = 'Gagal memuat ETH';
+        document.getElementById('usd-price').textContent = 'Gagal memuat USD';
+      }
+    }
+
+    // Panggil fungsi fetchPrices saat halaman dimuat
+    window.onload = fetchPrices;
+    // Update harga setiap 60 detik
+    setInterval(fetchPrices, 60000);
+  </script>
+</body>
+</html>
